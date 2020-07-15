@@ -4,7 +4,6 @@ import psutil
 import time
 import pyautogui
 import logging
-from pywinauto.application import Application
 
 class PbiRefresher:
 
@@ -34,6 +33,20 @@ class PbiRefresher:
       # open file
       os.system('start "" "' + script_path + pbix_file + '"')
       time.sleep(60) #wait 1 minutes
+      
+      # check if pwbi desktop is logged
+      coords = pyautogui.locateOnScreen(images_path + "Is Signed In.png")
+      if coords is not None:
+         logging.info("Log in...")
+         time.sleep(5)
+         pyautogui.click(coords[0], coords[1])
+         time.sleep(5)
+         coords = pyautogui.locateOnScreen(images_path + "Sign In.png")
+         if coords is not None:
+            pyautogui.typewrite("everaldo.pessoa@ehpessoa.com")
+            time.sleep(5)
+            pyautogui.click(coords[0], coords[1])
+            time.sleep(30)      
       
       # refresh data 
       coords = pyautogui.locateOnScreen(images_path + "Refresh.png")
