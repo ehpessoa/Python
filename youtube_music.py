@@ -3,7 +3,7 @@ from ytmusicapi import YTMusic
 
 ytmusic = YTMusic('headers_auth.json')
 
-playlistId="YOUR PLAY LIST HERE"
+playlistId="YOUR PLAYLIST HERE"
 playlist = ytmusic.get_playlist(playlistId)
 print("Playlist: "+playlist['title'])
 print("Author: "+playlist['author']['name'])
